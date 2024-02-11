@@ -23,10 +23,6 @@ export class CoursesClientComponent implements OnInit {
   courses: any[] = [];
   presignedUrl = '';
 
-  // courses: any = [
-  //   { percent: 40, chips: [], hour: 10, class: 6, name: '', descriptionEs: '', imageCourse: '', id: "4de36089-3bbb-4752-a794-73aba84a80ca" },
-  // ]
-
   constructor(public utils: UtilsService, private s3Service: S3ManagerService, private api: APIService, private userService: UserService) {
 
   }
@@ -43,16 +39,14 @@ export class CoursesClientComponent implements OnInit {
   async getCoursesByUserId() {
     try {
       const responseCourses = await this.api.ListProgresionCourseByUserDataID(this.userService.dataSource['userDataID']);
-
-      for (const item of responseCourses.items) {
+      const coursePromises = responseCourses.items.map(async (item) => {
         const { name, descriptionCourse, tags, keyImagePresentation, id, modules } = item?.course!;
         const lengthClasses = modules?.items.length;
-        const url = await this.s3Service.getUrlFile(keyImagePresentation);
-        const percent = await this.calculateCoursePercent(id);
-        const tagsList = await this.translateTagsbyId(tags?.items.map(item => item?.courseByTagsTagId));
-
-        console.log('tags List', tagsList)
-        this.courses.push({
+        const urlPromise = this.s3Service.getUrlFile(keyImagePresentation);
+        const percentPromise = this.calculateCoursePercent(id);
+        const tagsListPromise = this.translateTagsbyId(tags?.items.map(item => item?.courseByTagsTagId));
+        const [url, percent, tagsList] = await Promise.all([urlPromise, percentPromise, tagsListPromise]);
+        return {
           percent: percent,
           chips: tagsList,
           hour: 10,
@@ -61,8 +55,9 @@ export class CoursesClientComponent implements OnInit {
           descriptionEs: descriptionCourse,
           imageCourse: url,
           id: id
-        });
-      }
+        };
+      });
+      this.courses = await Promise.all(coursePromises);
     } catch (e) {
       console.error('No es posible traer la información');
     }
@@ -70,9 +65,12 @@ export class CoursesClientComponent implements OnInit {
   async calculateCoursePercent(courseID: string) {
     try {
       const responseContentCourseId = await this.api.ListProgressionContentbyCourseId(courseID);
-      // console.log('Progression Content for course id', responseContentCourseId);
+      ///console.log('Progression Content for course id', responseContentCourseId);
       const responseContent = await this.api.ListProgressionContents();
-      console.log('content', responseContent);
+
+      const test = await this.api.ListProgresionCourses();
+
+      ///console.log('content', responseContent);
 
 
 
