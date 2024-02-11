@@ -1,0 +1,30 @@
+<div class="full-width col f-between component">
+  <div class="full-width">
+    <h1>Preguntas frecuentes</h1>
+    <div class="bottom-line">
+    </div>
+    <p>Te aclaramos tus dudas. Si aún tienes preguntas, por favor, no dudes en contactarnos.</p>
+    <div class="full-width" *ngFor="let item of dataSource">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{item.pqr}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span>{{item.response}}</span>
+      </mat-expansion-panel>
+    </div>
+
+    <div class="section-contact">
+      <p>Sí aun tienes dudas, no dudes en escribirnos, te ayudaremos lo mas pronto posible:</p>
+      <div class="btn-contact">
+        <app-reusable-button
+        [buttonText]="'Contactanos'"
+        [isDisabled]="buttonDisabled"
+        [clickOnce]="false"
+        (buttonClick)="handleButtonClick()"
+      ></app-reusable-button>
+      </div>
+    </div>
+  </div>
+</div>

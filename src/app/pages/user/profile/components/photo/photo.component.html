@@ -1,0 +1,22 @@
+<section class="container-photo" [@fadeElement]>
+  <h2>Imagen de perfil</h2>
+  <p>Agrega una imagen</p>
+  <article class="add-file">
+    <app-add-file
+      (callBackFileChange)="addImageFile($event)"
+      title="Adjunte la imagen"
+      subtitle="Clic en el botón o arrastrar el archivo aquí"
+      fileType="image/png,image/jpg,image/jpeg"
+      [completed]="true"
+    >
+    </app-add-file>
+    <div class="btn">
+      <app-reusable-button
+      [buttonText]="'Actualizar'"
+      [isDisabled]="buttonDisabled"
+      [clickOnce]="true"
+      (buttonClick)="uploadFile()"
+    ></app-reusable-button>
+    </div>
+  </article>
+</section>

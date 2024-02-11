@@ -1,0 +1,55 @@
+<div class="full-width col f-between component">
+
+    <div class="row f-between f-center">
+        <div>
+            <h2 class="title">Miembros del grupo {{nameGroup}}</h2>
+            <span>Agrega miembros que pertenescan a este grupo</span>
+        </div>
+        <div>
+            <button mat-raised-button color="primary" (click)="openAdd()">Agregar miembro</button>
+        </div>
+    </div>
+    <br>
+    <mat-card>
+        <br>
+        <div class="mat-elevation-z0">
+
+            <mat-paginator [hidePageSize]="true" [length]="lengthData" [pageSize]="limitElements"
+                (page)="pageChange($event)" aria-label="Select page of periodic elements" pageSize="25">
+            </mat-paginator>
+            <div class="container-table custom-scroll">
+                <table mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="createdAt">
+                        <th class="mw-200" mat-header-cell *matHeaderCellDef> Fecha de creación </th>
+                        <td class="mw-200" mat-cell *matCellDef="let element"> {{element.createdAt | date:'MMMM d, y'}}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                        <th class="mw-200" mat-header-cell *matHeaderCellDef> Nombre </th>
+                        <td class="mw-200" mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="phone">
+                        <th class="mw-100" mat-header-cell *matHeaderCellDef> Teléfono </th>
+                        <td class="mw-100" mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                        <th class="mw-200" mat-header-cell *matHeaderCellDef> Acciones </th>
+                        <td class="mw-200 full-height" mat-cell *matCellDef="let element">
+                            <button mat-button><fa-icon class="btnRefresh" [icon]="['fas', 'trash']"></fa-icon></button>
+                            <button mat-button (click)="utils.goToRouter('teams/' + element.id)"><fa-icon
+                                    class="btnRefresh" [icon]="['fas', 'up-right-from-square']"></fa-icon></button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                        (click)="utils.goToRouter('teams/' + row.id)"></tr>
+                </table>
+            </div>
+        </div>
+    </mat-card>
+</div>

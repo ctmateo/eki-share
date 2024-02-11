@@ -1,0 +1,23 @@
+<app-header class="full-width top-view" *ngIf="isLogging"></app-header>
+<div role="main">
+  <amplify-authenticator initialState="signIn" [hideSignUp]="true" [loginMechanisms]="['email']" [signUpAttributes]="['given_name','family_name',
+          'phone_number']" [services]="services">
+
+    <ng-template amplifySlot="header">
+      <div style="padding: var(--amplify-space-large); text-align:
+                  center">
+        <img style="width: 280px; height: auto;" class="amplify-image" alt="Amplify logo"
+          src="https://eki-public.s3.amazonaws.com/icon-web-company.png" />
+      </div>
+    </ng-template>
+
+    <ng-template amplifySlot="authenticated" let-user="user" let-signOut="signOut">
+    
+      <div class="full-width" #target>
+        <router-outlet>
+        </router-outlet>
+      </div>
+
+    </ng-template>
+  </amplify-authenticator>
+</div>

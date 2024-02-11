@@ -1,0 +1,120 @@
+<div class="full-width row f-between component" *ngIf="company">
+    <div class="col left-panel">
+        <div class="card-eki">
+            <h4>Perfil de empresa</h4>
+            <br>
+            <div class="row" style="gap: 15px;">
+                <div class="logo-company" [style.background-image]="'url(' + logo + ')'"></div>
+                <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" accept=".jpg">
+                <button mat-button (click)="selectFile()">Subir logo</button>
+                <button mat-button color="warn" (click)="removeImageCompany()">Remover Logo</button>
+            </div>
+            <br><br>
+            <form>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Id de la compañía</mat-label>
+                    <input matInput value="{{company.id}}" readonly>
+                    <fa-icon (click)="utils.copyClipBoard(company.id)" class="icon-button" matSuffix [icon]="['fas', 'copy']"></fa-icon>
+                </mat-form-field>
+            </form>
+            <br>
+
+            <div class="col">
+                <h4>Fecha de creación</h4>
+                <p>{{company.createdAt | date:'MMMM d, y'}}</p>
+            </div>
+            <br>
+
+        </div>
+
+        <div class="card-eki">
+            <div class="row full-width f-between">
+                <div class="col">
+                    <h4>Límite de subscritos</h4>
+                    <p>{{company.limitUsers}} Cuentas</p>
+                </div>
+            </div>
+            <br>
+            <div class="row f-end">
+                <button mat-raised-button color="primary" (click)="requestIncreseSubscriptors()">Ampliar límite</button>
+            </div>
+        </div>
+    </div>
+    <div class="col rigth-panel">
+        <div class="card-eki">
+            <h4>Información de empresa</h4>
+            <br>
+            <form [formGroup]="companyForm">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Correo de contacto</mat-label>
+                    <input matInput value="{{company.user.email}}" disabled="true">
+                </mat-form-field>
+                <br><br>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Nombre de la compañía</mat-label>
+                    <input formControlName="controlNameCompany" matInput value="{{company.nameCompany}}">
+                </mat-form-field>
+                <br><br>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Nit</mat-label>
+                    <input formControlName="controlNITCompany" matInput value="{{company.nit}}" maxlength="11">
+                    <mat-error *ngIf="companyForm.get('controlNITCompany')?.hasError('pattern')">
+                        Formato NIT incorrecto. Ejs: 901204365-8
+                    </mat-error>
+                </mat-form-field>
+                <br><br>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Número de contacto</mat-label>
+                    <input formControlName="controlPhoneCompany" type="number" matInput value="{{company.user.phone}}">
+                </mat-form-field>
+                <br><br>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Nombre Representante legal</mat-label>
+                    <input formControlName="controlLegalName" matInput value="{{company.legalName}}">
+                </mat-form-field>
+                <br><br>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Apellido Representante legal</mat-label>
+                    <input formControlName="controlLegalSurname" matInput value="{{company.legalSurname}}">
+                </mat-form-field>
+                <br><br>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Tipo de documento Representante legal</mat-label>
+                    <mat-select formControlName="controlLegalDocumentType" [value]="company.legalDocument">
+                        <mat-option *ngFor="let document of documentsType" [value]="document.value">
+                            {{document.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br><br>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Número de documento</mat-label>
+                    <input formControlName="controlDocumentNumber" matInput value="{{company.legalDocumentNumber}}">
+                </mat-form-field>
+                <br><br>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Industria</mat-label>
+                    <mat-select formControlName="controlSector" [value]="company.economicSectorID">
+                        <mat-option *ngFor="let sector of listEconomicSector" [value]="sector.value">
+                            {{sector.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br><br>
+
+                <div class="row f-end">
+                    <button mat-raised-button color="primary" (click)="updateCompany()"
+                        [disabled]="!hasFormCompanyChanges">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

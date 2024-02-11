@@ -1,0 +1,15 @@
+<div *ngIf="loadCourses" class="full-width col f-between component">
+    <div class="course-carrousel">
+        <app-carousel class="app-carousel" [courses]="brandCourses">
+        </app-carousel>
+    </div>
+    <br>
+    <br>
+    <app-my-courses></app-my-courses>
+    <br>
+    <br>
+    <app-my-routes></app-my-routes>
+    <br>
+    <br>
+    <app-suggest-courses [newCourses]="newCourses" [trendingCourses]="trendingCourses"></app-suggest-courses>
+</div>

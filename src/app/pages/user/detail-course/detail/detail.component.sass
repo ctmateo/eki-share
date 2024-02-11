@@ -1,0 +1,61 @@
+@import '../../../../../styles.sass' 
+
+.content-view
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    width: calc( 100vw - 72px )
+    margin-left: 72px
+    height: auto
+    overflow: hidden
+    .expand
+        width: 300px
+        height: calc( 100vh -  72px)
+        background-color: white
+        flex-grow: 0
+        flex-shrink: 0
+
+    .content-detail
+        display: flex
+        flex-direction: column
+        justify-content: flex-start
+        align-content: center
+        align-items: center
+        height: calc( 100vh - 72px )
+        flex-grow: 1
+        flex-shrink: 1
+        overflow-y: scroll
+        padding-inline: 10px
+        .content-element
+            max-width: $break-md
+            width: 100%
+            display: flex
+            flex-direction: column
+            justify-content: center
+        .space
+            height: 65px
+            width: 100px
+
+
+.panel-title, .title
+    color: $main-primary-color
+
+.info-module    
+    padding: 4px
+    margin: 4px 0
+    cursor: pointer
+
+.text-module
+    margin: 0
+    // padding: 4px
+
+.info-module:hover
+    background-color: #acacaf
+    border-radius: 12px
+    color: $main-primary-color
+
+.active
+    background-color: #acacaf
+    border-radius: 12px
+    color: $main-primary-color
+    font-weight: bold

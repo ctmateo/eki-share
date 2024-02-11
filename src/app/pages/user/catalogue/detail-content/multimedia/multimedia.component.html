@@ -1,0 +1,57 @@
+<vg-player *ngIf="(type=='Class' || type=='Capsule') && multimedia.video != ''">
+    <vg-overlay-play></vg-overlay-play>
+    <vg-buffering></vg-buffering>
+
+    <vg-scrub-bar>
+        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+    </vg-scrub-bar>
+
+    <vg-controls>
+        <vg-play-pause></vg-play-pause>
+        <vg-playback-button></vg-playback-button>
+
+        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+        <vg-mute></vg-mute>
+        <vg-volume></vg-volume>
+
+        <vg-fullscreen></vg-fullscreen>
+    </vg-controls>
+    <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" crossorigin>
+        <source [src]="multimedia.video " type="video/mp4">
+    </video>
+</vg-player>
+
+<div class="podcast-content row f-between" *ngIf="type=='Podcast'">
+    <mat-spinner class="progress" color="white" *ngIf="loadingAudio"></mat-spinner>
+    <div class="wave col f-evenly">
+        <div class="bar-buttons" *ngIf="!loadingAudio">
+            <button class="buttons-podcast" mat-button color="primary" *ngIf="!isPlaying" (click)="play()"><fa-icon
+                    [icon]="['fas', 'play']"></fa-icon></button>
+            <button class="buttons-podcast" mat-button olor="primary" *ngIf="isPlaying" (click)="pause()"><fa-icon
+                    [icon]="['fas', 'pause']"></fa-icon></button>
+            <button class="buttons-podcast" mat-button (click)="stop()"><fa-icon
+                    [icon]="['fas', 'stop']"></fa-icon></button>
+            <p class="text-time buttons-podcast"> 
+                {{content.audioTime}}
+            </p>
+        </div>
+        <div #waveform></div>
+    </div>
+    <div class="podcast-card col f-center">
+        <div class="col f-center">
+            <fa-icon class="icon" [icon]="['fas', 'headphones']"></fa-icon>
+        </div>
+    </div>
+</div>
+
+<div class="info-content row f-between col f-center-v" *ngIf="type=='Infographics'">
+    <div class="image-info" [ngStyle]="{ 'background-image': 'url(' + multimedia.image+ ')'}">
+    </div>
+</div>

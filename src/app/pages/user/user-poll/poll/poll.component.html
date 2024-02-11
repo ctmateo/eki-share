@@ -1,0 +1,78 @@
+<!-- <div class="content">
+  <mat-stepper style="background-color: #f5f6fa" linear #stepper>
+    <mat-step>
+      <form [formGroup]="infoGroup">
+        <ng-template matStepLabel>Información básica</ng-template>
+        <div class="step-content">
+          <h2 style="font-weight: bold">Información básica</h2>
+          <br />
+          <div class="question-label">
+            <h3>¿Cuál es tu fecha de cumpleaños?</h3>
+          </div>
+          <mat-form-field class="input-date" appearance="outline" >
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input formGroupName="birthday" matInput [matDatepicker]="picker" />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <br />
+          <div class="question-label">
+            <h3>¿Cuál es tu género?</h3>
+          </div>
+          <div class="checkbox-container">
+            <mat-radio-group formGroupName="gender">
+              <mat-radio-button class="example-margin" value="after"
+                >Hombre</mat-radio-button
+              >
+              <mat-radio-button class="example-margin" value="before"
+                >Mujer</mat-radio-button
+              >
+              <mat-radio-button class="example-margin" value="before"
+                >Otro</mat-radio-button
+              >
+            </mat-radio-group>
+          </div>
+          <br />
+          <div class="question-label">
+            <h3>¿A cuál sector perteneces?</h3>
+          </div>
+          <mat-form-field class="select-width" appearance="outline">
+            <mat-select formGroupName="jobField">
+              <mat-option> Mineria </mat-option>
+              <mat-option> Agricultura </mat-option>
+              <mat-option> Financiero </mat-option>
+              <mat-option> Tecnología </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="question-label">
+            <h3>¿Perteneces a una población vulnerable?</h3>
+            <mat-slide-toggle formGroupName="jobField"></mat-slide-toggle>
+          </div>
+        </div>
+        <div class="button-content">
+          <button mat-flat-button style="background-color: #7D06AD; color: #F5F6FA" matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="interestGroup">
+      <form [formGroup]="interestGroup">
+        <ng-template matStepLabel>Tus intereses</ng-template>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Empieza</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div> -->

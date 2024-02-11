@@ -1,0 +1,84 @@
+@import '../../../../../../assets/styles/variables'
+p
+  margin: 0
+.container-accessibility 
+  padding: 30px
+
+.item 
+  display: flex
+  align-items: center
+  margin-bottom: 18px
+
+
+.switch-container
+  margin-right: 15px 
+  display: flex
+  cursor: pointer
+  border-radius: 50px
+  background-color: rgb(235, 235, 235)
+  height: 18px
+  width: 50px
+  &:hover
+    background-color: #dbdbdb
+
+    
+
+.switch
+  border-radius: 50px
+  background-color: rgb(168, 168, 168)
+  height: 18px
+  width: 30px
+  transition: transform 0.15s ease
+  &.active
+    transform: translateX(20px)
+    background-color: $main-secundary-color
+
+.content-button
+  display: flex
+  justify-content: flex-end
+  margin-top: 80px
+  button
+    opacity: 0.5
+    font-weight: 500
+    width: 130px
+    cursor: pointer
+    border-radius: 10px
+    padding: 10px
+    color: $background-color
+    background-color: #7D06AD
+    border: none
+
+.calendar-option
+  margin-top: 32px
+  display: flex
+  gap: 38px
+  .input-hour
+    input
+      border: 0.5px solid gray
+      outline: none
+      padding: 16px
+      border-radius: 5px 
+
+.input-day
+.day-box
+  display: flex
+  margin-top: 16px
+
+.column
+  margin-right: 10px
+  p
+    font-size: 18px 
+
+.selectable-box
+  border: 1px solid gray
+  height: 15px
+  width: 15px
+  cursor: pointer
+  margin: 3px
+
+
+  &:hover
+    background-color: gray
+
+  &.active
+    background-color: $main-secundary-color

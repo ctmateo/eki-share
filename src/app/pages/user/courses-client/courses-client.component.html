@@ -1,0 +1,26 @@
+<div class="full-width component">
+  <mat-tab-group class="group-tabs">
+    <mat-tab *ngFor="let tab of tabs">
+      <ng-template mat-tab-label>{{ tab.name }}</ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+  <div class="filter">
+    <p>ordenar por:</p>
+    <button>Más reciente <fa-icon [icon]="['fas', 'caret-down']"></fa-icon></button>
+  </div>
+  <div class="course-grid">
+    <app-card-course *ngFor="let item of courses" [course]="item" (courseClick)="goToCourse(item.id)"></app-card-course>
+  </div>
+
+  <div class="section col just-center align-center b-all">
+    <h1>El mejor contenido de capacitación para la ruralidad</h1>
+    <p>Contamos con <span>más de 200</span> cursos dados por lideres del sector, que comparte su conocimiento para impulsar el desarrollo del sector rural. Conoce nuestro catalogo</p>
+    <app-reusable-button
+    [buttonText]="'Ver catalogo'"
+    [isDisabled]="buttonDisabled"
+    [clickOnce]="true"
+    (buttonClick)="handleButtonClick()"
+  ></app-reusable-button>
+  </div>
+</div>

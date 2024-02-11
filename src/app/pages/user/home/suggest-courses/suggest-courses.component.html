@@ -1,0 +1,66 @@
+<div>
+    <div class="row f-sAround full-width ">
+        <p><span class="title fs-18"> Los mejores cursos </span></p>
+    </div>
+
+    <div *ngIf="!courseslIsLoad" class="col f-center full-width">
+        <ngx-skeleton-loader class="full-width" count="5" appearance="circle" [theme]="{height: '96px', width: '100%', 'border-radius': '0',}"  />
+      </div>
+
+    <div *ngIf="courseslIsLoad" class="row-wrap f-sBetween auto-height g-2">
+        <mat-tab-group class="full-width" mat-stretch-tabs="false" mat-align-tabs="start">
+            <mat-tab label="Nuevos cursos">
+                <div class="row g-1" style="margin-top: 15px;">
+                    <div class="col g-1 list-courses">
+                        <div class="row click f-between card-course card-eki mw-350 full-height "
+                            style="height: 96px!important;" *ngFor="let course of newCoursesSources" (click)="goToCourse(course.id)">
+
+                            <div class="image-course" [ngStyle]="{ 'background-image': 'url(' + course.keyImagePresentation + ')'}">
+
+                            </div>
+                            <div class="text-course col">
+                                <p class="title fs-18"> {{course.name}}</p>
+                                <div class="row g-1">
+                                    <div class="chip" *ngFor="let tag of course.tags">
+                                        {{tag}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row price-course f-center">
+                                <p class="text-highligth"> ir al curso <fa-icon class="icon"
+                                        [icon]="['fas', 'arrow-right']"></fa-icon> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Tendencias">
+                <div class="row g-1" style="margin-top: 15px;">
+                    <div class="col g-1 list-courses">
+                        <div class="row click f-between card-course card-eki"
+                             *ngFor="let course of trendingCoursesSources"  (click)="goToCourse(course.id)">
+
+                            <div class="image-course" [ngStyle]="{ 'background-image': 'url(' + course.keyImagePresentation + ')'}">
+
+                            </div>
+                            <div class="text-course col">
+                                <p class="title fs-18"> {{course.name}}</p>
+                                <div class="row g-1">
+                                    <div class="chip" *ngFor="let tag of course.tags">
+                                        {{tag}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row price-course f-center">
+                                <p class="text-highligth"> ir al curso <fa-icon class="icon"
+                                        [icon]="['fas', 'arrow-right']"></fa-icon> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="teacher-card">
+    <mat-chip-listbox>
+        <mat-chip-option class="chip">Finanzas microempresas</mat-chip-option>
+        <mat-chip-option class="chip">Ventas</mat-chip-option>
+    </mat-chip-listbox>
+
+    <br>
+    <div class="teacher-info">
+
+        <div class="teacher-data row f-sBetween">
+            <div style="width:30%">
+                <img class="teacher-photo" src="https://eki-public.s3.amazonaws.com/dumie/avatar_12.jpg">
+            </div>
+            <div style="width:60%">
+                <strong class="teacher-title">Experto:</strong>
+                <br>
+                <strong class="teacher-title">Andrea Serna</strong>
+                <p>Directora de enprende</p>
+                <bar-rating [rate]="4.5" [max]="5">
+                    <ng-template ratingInactive>
+                        <fa-icon [icon]="['far', 'star']" [fixedWidth]="true" size="lg" style="color:
+                            #d2d2d2"></fa-icon>
+                    </ng-template>
+                    <ng-template ratingActive>
+                        <fa-icon [icon]="['fas', 'star']" [fixedWidth]="true" size="lg" style="color:
+                            #7D06AD"></fa-icon>
+                    </ng-template>
+                    <ng-template ratingFraction>
+                        <fa-icon [icon]="['fas', 'star-half-alt']" [fixedWidth]="true" size="lg" style="color:
+                            #7D06AD"></fa-icon>
+                    </ng-template>
+                </bar-rating>
+            </div>
+
+        </div>
+
+        <br>
+        <p class="teacher-description">
+            Descubre el mundo de las finanzas para alcanzar tus metas financieras. Conoce de la mano de expertos nuevas
+            metodologías y herramientas.
+        </p>
+        <br>
+    </div>
+
+    <div class="button-buy">
+        <button mat-stroked-button color="primary">
+            <fa-icon class="icon" [icon]="['fas', 'cart-shopping']"></fa-icon>
+            Comprar
+        </button>
+        <div class="price">
+            <p> <span class="text-highligth">32 USD</span>  &nbsp; <span class="text-line-through"> 42 USD</span></p>
+        </div>
+    </div>
+</div>

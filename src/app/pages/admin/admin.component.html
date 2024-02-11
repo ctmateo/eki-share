@@ -1,0 +1,76 @@
+<mat-drawer-container class="full-width sidenav-content" [hasBackdrop]="false" autosize>
+    <mat-drawer #drawer mode="side" class="drawer-side">
+        <mat-toolbar class="sidebar"
+            [ngStyle]="expanded ? {'width':'240px', 'justify-content': 'flex-start', 'padding-left': '20px'} : {'width':'72px', 'justify-content': 'flex-end'}">
+            <div class="content-toolbar" [ngStyle]="expanded ? {'align-items':'center'} : {'align-items':'flex-start'}">
+                <div class="class-buttons">
+
+                    <div style="width: 100%; display: flex; margin-top: 10px; justify-content: space-between;">
+                        <button mat-button [ngClass]="expanded? 'menu-button-expanded' : 'menu-button'"
+                            *ngIf="!expanded" (click)="expanded = !expanded" #tooltip="matTooltip" matTooltip="Menú"
+                            matTooltipPosition="after" [matTooltipDisabled]="expanded">
+                            <fa-icon class="icon" [icon]="['fas', 'bars']"></fa-icon>
+                        </button>
+                        <div style="width:120px;" *ngIf="expanded"></div>
+                        <button mat-button class="menu-button-close" *ngIf="expanded" (click)="expanded = !expanded">
+                            <fa-icon class="icon" [icon]="['fas', 'xmark']"></fa-icon>
+                        </button>
+                    </div>
+
+                    <button mat-button
+                        [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'users'? 'menu-button-select' : 'menu-button')"
+                        #tooltip="matTooltip" matTooltip="Colaboradores" matTooltipPosition="after"
+                        [matTooltipDisabled]="expanded" (click)="gotoPage('admin/users')">
+                        <fa-icon class="icon" [icon]="['fas', 'clipboard-user']"></fa-icon>
+                        <span *ngIf="expanded">Colaboradores</span>
+                    </button>
+                    <button mat-button
+                        [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'teams'? 'menu-button-select' : 'menu-button')"
+                        #tooltip="matTooltip" matTooltip="Grupos" matTooltipPosition="after"
+                        [matTooltipDisabled]="expanded" (click)="gotoPage('admin/teams')">
+                        <fa-icon class="icon" [icon]="['fas', 'users-line']"></fa-icon>
+                        <span *ngIf="expanded">Grupos</span>
+                    </button>
+                    <button mat-button
+                        [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'path'? 'menu-button-select' : 'menu-button')"
+                        #tooltip="matTooltip" matTooltip="Rutas" matTooltipPosition="after"
+                        [matTooltipDisabled]="expanded" (click)="gotoPage('admin/path')">
+                        <fa-icon class="icon" [icon]="['fas', 'route']"></fa-icon>
+                        <span *ngIf="expanded">Rutas</span>
+                    </button>
+                    <!-- <button mat-button
+                        [ngClass]="expanded? 'menu-button-expanded' :  (nameBottonPush == 'metrics'? 'menu-button-select' : 'menu-button')"
+                        #tooltip="matTooltip" matTooltip="Métricas" matTooltipPosition="after"
+                        [matTooltipDisabled]="expanded" (click)="gotoPage('admin/metrics')">
+                        <fa-icon class="icon" [icon]="['fas', 'chart-column']"></fa-icon>
+                        <span *ngIf="expanded">Métricas</span>
+                    </button> -->
+                    <button mat-button
+                        [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'profile'? 'menu-button-select' : 'menu-button')"
+                        #tooltip="matTooltip" matTooltip="Perfil" matTooltipPosition="after"
+                        [matTooltipDisabled]="expanded" (click)="gotoPage('admin/profile')">
+                        <fa-icon class="icon" [icon]="['far', 'user']"></fa-icon>
+                        <span *ngIf="expanded">Perfil</span>
+                    </button>
+                    <button mat-button
+                        [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'Logout'? 'menu-button-select' : 'menu-button')"
+                        #tooltip="matTooltip" matTooltip="Salir" matTooltipPosition="after"
+                        [matTooltipDisabled]="expanded" (click)="logOut()">
+                        <fa-icon class="icon" [icon]="['fas', 'arrow-right-from-bracket']"></fa-icon>
+                        <span *ngIf="expanded">Logout</span>
+                    </button>
+                </div>
+            </div>
+        </mat-toolbar>
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <div role="main">
+            <div class="login-content" #target>
+                <router-outlet>
+                </router-outlet>
+            </div>
+        </div>
+    </mat-drawer-content>
+
+</mat-drawer-container>

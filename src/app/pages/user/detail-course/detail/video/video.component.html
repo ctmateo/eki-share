@@ -1,0 +1,60 @@
+<div>
+  <div class="">
+    <video #video class="video" [src]="data.url" controls (timeupdate)="onTimeUpdate(video)"></video>
+  </div>
+  <div class="contenedor">
+    <mat-tab-group mat-align-tab="start">
+      <div>
+        <mat-tab *ngIf="data.description">
+          <ng-template mat-tab-label>
+            <span class="color-tab"> Detalle </span></ng-template>
+          <p style="text-align: justify">
+            {{ data.description }}
+          </p>
+        </mat-tab>
+        <mat-tab *ngIf="data.resources?.length">
+          <ng-template mat-tab-label>
+            <span class="color-tab">Recursos</span>
+
+          </ng-template>
+
+          recursos
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span class="color-tab"> Notas </span>
+
+          </ng-template>
+          <div class="mt-3" style="overflow: hidden;">
+            <div class="row flex-end">
+              <button mat-raised-button class="btn btn-guardar" (click)="btnToggleCrateNote(video)">Crear nueva
+                nota</button>
+            </div>
+            <div *ngIf="isNewNote" class="mt-3">
+              <p>{{time*1000 |date : 'mm:ss'}}</p>
+
+              <form>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Agregar nota</mat-label>
+                  <textarea matInput type="text" placeholder="Agregar nota"></textarea>
+                </mat-form-field>
+              </form>
+              <div class="row g-1 ">
+
+                <button mat-raised-button class="btn-guardar btn">Guardar</button>
+                <button mat-raised-button class="btn-cancelar btn">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </div>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <button class="color-tab" (click)="generateReport()">
+            Reportar un problema
+          </button>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

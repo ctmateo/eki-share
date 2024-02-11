@@ -1,0 +1,21 @@
+<div *ngIf="!carouselIsLoad" class="col f-center full-width">
+  <ngx-skeleton-loader class="full-width" count="1" appearance="circle" [theme]="{height: '380px', width: '100%', 'border-radius': '0',}"  />
+</div>
+<owl-carousel-o *ngIf="carouselIsLoad" class="carousel-courses col f-center" [options]="customOptions">
+  <ng-container *ngFor="let course of sourcesCourses">
+    <ng-template carouselSlide >
+
+      <div class="card-image" (click)="goToCourse(course.id)">
+        <div class="img-carousel" [ngStyle]="{ 'background-image': 'url(' + course.keyImagePresentation + ')'}">
+        </div>
+      </div>
+
+      <div class="card-body">
+        <p class="fw-7 course-name">{{course.name}}</p>
+        <button mat-flat-button class="fw-7 btn-course" (click)="goToCourse(course.id)">Ver curso</button>
+      </div>
+
+    </ng-template>
+  </ng-container>
+
+</owl-carousel-o>

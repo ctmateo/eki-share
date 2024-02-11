@@ -1,0 +1,52 @@
+<div class="full-width col f-between component">
+
+  <mat-card class="filter-card full-width" [formGroup]="filterForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Categoria</mat-label>
+      <mat-select formControlName="attribute">
+        <mat-option *ngFor="let item of categories" [value]="item">{{
+          item
+          }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nivel</mat-label>
+      <mat-select formControlName="condition">
+        <mat-option *ngFor="let item of levels" [value]="item">{{
+          item
+          }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Facilitador</mat-label>
+      <mat-select formControlName="condition">
+        <mat-option *ngFor="let item of teachers" [value]="item">{{
+          item
+          }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="buttons-filter">
+      <button mat-raised-button>
+        <fa-icon class="btnRefresh" [icon]="['fas', 'rotate-right']"></fa-icon>
+      </button>
+      <button mat-raised-button class="btnSearch">Buscar</button>
+    </div>
+  </mat-card>
+  <br>
+ 
+  <mat-tab-group mat-align-tabs="start" (selectedIndexChange)="changeTag($event)">
+    <mat-tab *ngFor="let tab of tabs">
+      <ng-template mat-tab-label>{{tab.label}}</ng-template>
+      <br />
+      <div class="card-container">
+        <app-card-catalogue class="grid-item-card" *ngFor="let element of result" [item]="element"
+          [type]="tab.name"></app-card-catalogue>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  <br>
+  <mat-progress-bar *ngIf="!hasResults" mode="indeterminate"></mat-progress-bar>
+  <mat-paginator #pagintor [hidePageSize]="false" [length]="lengthData" [pageSize]="pageSize" (page)="pageChange($event)"
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

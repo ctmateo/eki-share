@@ -1,0 +1,30 @@
+<div mat-dialog-title class="col f-center mt-0">
+    <h3 class="p-0 mt-0">
+        Crear equipo de trabajo
+    </h3>
+    <p> Aquí, puedes formar un equipo de trabajo para asignar rutas de aprendizaje por equipo.</p>
+</div>
+
+<hr>
+<form [formGroup]="groupForm">
+    <mat-dialog-content class="mat-typography">
+        <div class="col g-1">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre del grupo: </mat-label>
+                <input type="text" matInput formControlName="name" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Descripción:</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="action-dialog" align="end">
+        <div class="flex row full-width f-end">
+            <button mat-stroked-button mat-dialog-close color="primary">Cancelar</button>
+            <button mat-raised-button color="primary" (click)="create()">Crear grupo</button>
+        </div>
+    </mat-dialog-actions>
+</form>

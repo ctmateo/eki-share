@@ -1,0 +1,95 @@
+@import '../../../../assets/styles/typography.sass'
+@import '../../../../styles'
+
+h1
+  display: flex
+  font-family: 'Bold'
+  @extend .ft-size-22
+  color: #333
+  justify-content: center
+  text-align: center
+  padding: 0 24px 0 24px
+  margin: 0
+
+textarea
+  height: 150px
+  width: 100%
+  outline: none
+  border: 1px solid #c5c5c5
+  resize: none
+  border-radius: 5px
+  padding: 10px
+  margin-bottom: 20px
+
+.bottom-line
+  opacity: 0.1
+  background-color: gray
+  margin-top: 20px
+  height: 1px
+
+.dialog-content
+  padding: 0
+  p
+    margin-bottom: 8px
+
+.error-dialog
+  padding: 40px
+
+.error-dialog .mat-dialog-content
+  padding: 0 !important
+  margin: 0
+
+.icon
+  font-size: 28px
+  margin-bottom: 5px
+
+.button-box
+  display: flex
+  align-items: center
+  justify-content: space-between
+  margin-bottom: 20px
+
+  .selectable-box
+    font-family: 'Medium'
+    padding: 15px
+    opacity: 0.5
+    cursor: pointer
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    background-color: $main-secundary-color
+    width: 115px
+    height: 100%
+    color: white
+
+    &:hover
+      opacity: 0.7
+  .selectable-box.selected
+    opacity: 1
+
+.buttons
+  padding: 0
+  display: flex
+  align-items: center
+  button
+    cursor: pointer
+    padding:  10px 20px 10px 20px
+    margin-right: 10px 
+    font-family: 'Semibold'
+    color: #4b4b4b
+    background-color: #e0e0e0
+    border-radius: 12px
+    border: none
+    &:hover
+      background-color: #d9d9d9
+
+.element-opacity
+  &.isblock
+    cursor: default
+    opacity: 0.5
+  &.full
+    opacity: 1
+
+.btn-send
+  background-color: rgb(125, 6, 173)

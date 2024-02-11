@@ -1,0 +1,42 @@
+@import "../../../../../styles"
+
+.title
+    font-weight: 700
+    font-size: 24
+
+.list-courses
+    width: 100%
+    .card-course
+        height: 96px!important
+        &:hover
+            border: 2px solid $main-secundary-color
+        &:active
+            background: $main-primary-light-border
+            color: white
+            .title
+                color: white
+        .image-course
+            height: calc( 100% + 30px )
+            transform: translateY(-15px) translateX(-30px) 
+            width: 120px
+            border-radius: 12px 0px 0px 12px!important
+            background-size: cover
+            background-repeat: no-repeat
+            background-attachment: fixed
+            background-position: center
+
+        .text-course
+            width: 70%
+            .chip
+                background: $main-primary-light-color
+                border-radius: 15px
+                padding: 1px 5px 1px 5px
+
+        .price-course 
+            height: 100%
+
+.detail-courses
+    width: 35%
+
+.click
+    cursor: pointer

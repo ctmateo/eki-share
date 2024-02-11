@@ -1,0 +1,27 @@
+<div>
+    <div class="row f-between full-width">
+        <p><span class="title fs-18"> Mis cursos </span></p>
+        <p class="text-highligth"> Ver mis cursos <fa-icon class="icon"
+                [icon]="['fas', 'arrow-right']"></fa-icon> </p>
+    </div>
+
+    <div class="grid-courses">
+        <div class="card-course card-eki" *ngFor="let course of courses" (click)="goToCourse(course.id)">
+            <mat-chip-listbox class="chip-content">
+                <mat-chip-option class="chip">{{course.chip1}}</mat-chip-option>
+                <mat-chip-option class="chip">{{course.chip2}}</mat-chip-option>
+            </mat-chip-listbox>
+            <p class="title fs-18"> {{course.name}}</p>
+            <br>
+            <div class="image-course" [ngStyle]="{ 'background-image': 'url(' + course.imageCourse + ')'}"></div>
+            <br>
+            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            <p> {{course.percent}}% completado</p>
+            <div class="row f-between">
+                <p> <span class="text-highligth">{{course.class}} clases</span> </p>
+                <p> <span class="text-highligth">{{course.hour}} horas</span></p>
+            </div>
+        </div>
+    </div>
+
+</div>

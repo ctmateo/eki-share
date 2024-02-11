@@ -1,0 +1,42 @@
+<mat-tab-group  >
+    <mat-tab label="Detalles">
+        <br>
+        <p>
+            {{description}}
+        </p>
+    </mat-tab>
+    <mat-tab label="Comentarios">
+        <div class="content-tab">
+            <br>
+            <form [formGroup]="formComment">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Deja un comentario</mat-label>
+                    <textarea matInput placeholder="Ejemplo. Esto me hace pensar ..." formControlName="comment"
+                        (keyup.enter)="enterComent($event)"></textarea>
+                </mat-form-field>
+
+                <div class="row f-end">
+                    <button mat-raised-button color="primary" (click)="sendComment()" [disabled]="!formComment.valid">
+                        <fa-icon class="icon-menu" [icon]="['fas', 'paper-plane']"></fa-icon>
+                        Enviar
+                    </button>
+                </div>
+            </form>
+            <br>
+            <div class="content-users-comments">
+                <div class="comment" *ngFor="let item of sourceComments">
+   
+                    <img class="profile" [src]="item.profilePhoto" alt="profile-user" (error)="noImage($event)">
+                    <div class="content">
+                        <p class="name"> {{item.name}} - <span class="hour"> {{ item.createAt | dateFormat }} </span></p>
+                        <p class="message"> {{item.menssages}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </mat-tab>
+</mat-tab-group>
+<div class="space">
+
+</div>

@@ -1,0 +1,42 @@
+<section class="container-accessibility" [@fadeElement]>
+  <h2>Quiero recibir:</h2>
+  <div class="reminders" *ngFor="let switchState of switchStates; let i = index">
+    <div class="item">
+      <div class="switch-container">
+        <div class="switch" (click)="toggleSwitch(i)" [ngClass]="{'active': switchState}"></div>
+      </div>
+      <ng-container *ngIf="i === 0">
+        <p>Promociones, recomendaciones o sugerencias de recursos, cursos y rutas</p>
+      </ng-container>
+      <ng-container *ngIf="i === 1">
+        <p>Recordatorios sobre el progreso de mis cursos y rutas</p>
+      </ng-container>
+      <ng-container *ngIf="i === 2">
+        <p>Recuérdame a través de WhatsApp</p>
+      </ng-container>
+    </div>
+    <div class="calendar-option" *ngIf="i === 2 && switchState">
+      <div class="input-hour" [formGroup]="switchForm">
+        <p>Hora</p>
+        <input placeholder="9AM" matInput formControlName="hour" id="hour" type="time"/>
+      </div>
+      <div class="input-day">
+        <p>Día de la semana</p>
+        <div class="day-box">
+          <div class="column" *ngFor="let isSelected of selectableBoxStates; let i = index">
+            <p>{{ getDayName(i) }}</p>
+            <div class="selectable-box" (click)="toggleSelectableBox(i)" [ngClass]="{'active': isSelected}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <article class="content-button">
+    <app-reusable-button
+    [buttonText]="'Actualizar'"
+    [isDisabled]="buttonDisabled"
+    [clickOnce]="true"
+    (buttonClick)="updateSwitchDB()"
+  ></app-reusable-button>
+  </article>
+</section>

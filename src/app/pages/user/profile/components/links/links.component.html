@@ -1,0 +1,41 @@
+<section class="container-links" [@fadeElement]>
+  <form [formGroup]="linksForm">
+    <span>Página web</span>
+    <mat-form-field appearance="outline">
+      <input
+        placeholder="www.tupágina.com"
+        type="text"
+        matInput
+        formControlName="webpage"
+        id="webpage"
+      />
+    </mat-form-field>
+
+    <div class="wrapper-field">
+      <div class="grid-field">
+        <div class="link-item"><p>http://twitter.com/</p></div>
+        <input class="w-border" type="text" matInput formControlName="twitter" id="twitter" />
+      </div>
+    </div>
+    <div class="wrapper-field">
+      <div class="grid-field">
+        <div class="link-item"><p>http://linkedin.com/</p></div>
+        <input class="w-border" type="text" matInput formControlName="linkedin" id="linkedin" />
+      </div>
+    </div>
+    <div class="wrapper-field">
+      <div class="grid-field">
+        <div class="link-item"><p>http://youtube.com/</p></div>
+        <input class="w-border" type="text" matInput formControlName="youtube" id="youtube" />
+      </div>
+    </div>
+  </form>
+  <div class="content-button">
+    <app-reusable-button
+    [buttonText]="'Actualizar'"
+    [isDisabled]="buttonDisabled"
+    [clickOnce]="true"
+    (buttonClick)="updateLinks()"
+  ></app-reusable-button>
+  </div>
+</section>

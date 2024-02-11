@@ -1,0 +1,80 @@
+@import '../../../../assets/styles/variables'
+@import '../../../../assets/styles/typography'
+@import '../../../../styles'
+.container-profile
+  display: flex
+  gap: 15px
+
+.bar-right
+  width: 60%
+  height: 100%
+  
+.bar-left
+  width: 40%
+  height: 300px
+
+.configure-profile, .information-profile
+  font-family: 'Montserrat', sans-serif
+  border: 0.5px solid rgba(79, 79, 79, 0.2)
+  border-radius: 10px
+  background: white
+  height: 100%
+  width: 100%
+
+.center-align
+  display: flex
+  flex-direction: column
+  align-items: center
+  p
+    margin: 0
+  h1
+    font-size: 22px
+    margin: 0
+    font-family: 'Bold'
+
+  .image-profile
+    cursor: pointer
+    margin: 20px 0 20px 0
+    height: 150px
+    width: 150px
+    background-color: rgba(114, 137, 251, 0.315)
+    border-radius: 100%
+    overflow: hidden
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+
+
+.configure-profile
+  padding: 20px
+  height: 510px
+
+  .link-items 
+    padding: 20px
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: flex-start
+    a
+      text-decoration: none
+      color: $text-color
+      cursor: pointer
+      font-weight: 900
+      margin-bottom: 20px
+      &:hover
+        color: #7D06AD
+
+  .bottom-line
+    margin-top: 20px
+    width: 100%
+    height: 1px
+    background-color: rgba(79, 79, 79, 0.072)
+
+
+
+
+.information-profile
+  height:100%
+
+

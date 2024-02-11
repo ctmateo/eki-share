@@ -1,0 +1,54 @@
+<div class="error-dialog">
+  <h1>
+    ¿Encontraste un problema? <br />
+    Ayúdanos a resolverlo
+  </h1>
+  <div class="bottom-line"></div>
+  <p>
+    ¿Cómo podemos ayudarte? Recuerda que todo el equipo de eki estará dispuesto
+    a darte solución lo más pronto posible.
+  </p>
+  <div class="dialog-content" mat-dialog-content>
+    <p>Selecciona en donde encontraste el problema*</p>
+    <div class="button-box">
+      <div
+        *ngFor="let box of selectableBoxes; let i = index"
+        class="selectable-box b-all"
+        [class.selected]="box.selected"
+        (click)="onBoxClick(i)"
+      >
+        <fa-icon [icon]="box.icon" class="icon"></fa-icon>
+        <span>{{ box.label }}</span>
+      </div>
+    </div>
+    <p>Puedes describir tu problema aquí*</p>
+    <div [formGroup]="errorForm">
+      <textarea
+        #formControl
+        type="text"
+        placeholder="Escribe tu reporte"
+        matInput
+        formControlName="description"
+      ></textarea>
+    </div>
+  </div>
+  <div class="col f-end">
+    <div class="buttons" mat-dialog-actions>
+      <button mat-dialog-close>Cancelar</button>
+      <div
+        [ngClass]="{
+          'element-opacity': true,
+          'isblock': buttonDisabled,
+          'full': !buttonDisabled
+        }"
+      >
+        <app-reusable-button
+          [buttonText]="'Enviar'"
+          [isDisabled]="buttonDisabled"
+          [clickOnce]="true"
+          (buttonClick)="handleButtonClick()"
+        ></app-reusable-button>
+      </div>
+    </div>
+  </div>
+</div>

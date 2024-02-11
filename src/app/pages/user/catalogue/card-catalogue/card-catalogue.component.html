@@ -1,0 +1,50 @@
+<div class="course-card py-1" (click)="gotoDetail()">
+
+  <mat-chip-listbox class="px-2 tags" *ngIf="item.tags">
+    <mat-chip-option *ngFor="let element of item.tags.slice(0, 2)" class="chips">{{element.tag.name}}</mat-chip-option>
+  </mat-chip-listbox>
+
+  <p class="title px-2">{{item.title}}</p>
+  <div class="course-info">
+    <img *ngIf="item.image" class="course-photo" [src]="item.image" (error)="noImage($event)" />
+    <div *ngIf="!item.image && type == 'Courses'" class="course-video col f-center">
+      <div class="circle col f-center">
+        <fa-icon class="icon" [icon]="['fas', 'chalkboard-user']"></fa-icon>
+      </div>
+    </div>
+
+    <div *ngIf="type == 'Class'" class="course-video col f-center">
+      <div class="circle col f-center">
+        <fa-icon class="icon" [icon]="['fas', 'chalkboard-user']"></fa-icon>
+      </div>
+    </div>
+
+    <div *ngIf="type == 'Podcast'" class="course-video col f-center">
+      <div class="circle col f-center">
+        <fa-icon class="icon" [icon]="['fas', 'headphones']"></fa-icon>
+      </div>
+    </div>
+
+    <div *ngIf="type == 'Capsule'" class="course-video col f-center">
+      <div class="circle col f-center">
+        <fa-icon class="icon" [icon]="['fas', 'capsules']"></fa-icon>
+      </div>
+    </div>
+
+    <div *ngIf="type == 'Infographics' && !item.image" class="course-video col f-center">
+      <div class="circle col f-center">
+        <fa-icon class="icon" [icon]="['fas', 'capsules']"></fa-icon>
+      </div>
+    </div>
+
+    <p class="px-2 description">
+      {{item.description}}
+    </p>
+  </div>
+  <br>
+  <div class="button-buy px-2">
+    <div class="counter col f-end">
+      <small> {{item.counType}} {{item.count}} </small>
+    </div>
+  </div>
+</div>

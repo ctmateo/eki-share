@@ -1,0 +1,42 @@
+<div class="container-reports full-width component">
+  <mat-tab-group
+    class="tab"
+    mat-align-tabs="start"
+    (selectedIndexChange)="selectedTab($event)"
+  >
+    <mat-tab *ngFor="let tab of tabs">
+      <ng-template mat-tab-label>{{ tab.name }}</ng-template>
+    </mat-tab>
+  </mat-tab-group>
+  <div class="report-box" *ngFor="let item of dataSourceById">
+    <div class="info">
+      <div class="infon-name-tag">
+        <h2>{{ item.user.name + " " + item.user.lastname }}</h2>
+      </div>
+      <div class="date">
+        <h2>{{ convertData(item.createdAt) }}</h2>
+      </div>
+    </div>
+    <div class="id">
+      <p>Ticket ID: {{ item.id }}</p>
+    </div>
+    <div class="data">
+      <div class="info-data">
+        <div class="title">
+          <h2>{{ titleReportList(item.reportSupportType) }}</h2>
+        </div>
+        <div class="problem">
+          <p>{{ item.requestMessages }}</p>
+        </div>
+      </div>
+      <div *ngIf="stateBtnOpenChat">
+        <app-reusable-button
+          [buttonText]="'Abrir chat'"
+          [isDisabled]="buttonDisabled"
+          [clickOnce]="true"
+          (buttonClick)="handleButtonClick(item.id)"
+        ></app-reusable-button>
+      </div>
+    </div>
+  </div>
+</div>

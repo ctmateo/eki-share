@@ -1,0 +1,58 @@
+<section class="container-config-profile" [@fadeElement]>
+  <form [formGroup]="profileForm">
+    <div class="form-field">
+      <span>Nombre</span>
+      <mat-form-field appearance="outline">
+        <input placeholder="Nombre" type="text" matInput formControlName="name" id="name" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <span>Apellido</span>
+      <mat-form-field appearance="outline">
+        <input placeholder="Apellido" type="text" matInput formControlName="last_name" id="last_name" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <span>Correo electrónico</span>
+      <mat-form-field id="block" appearance="outline">
+        <input placeholder="tucorreo@email.com" type="text" matInput formControlName="email" id="email" readonly />
+      </mat-form-field>
+    </div>
+
+    <div class="double-field">
+      <div class="indicative">
+        <span>Indicativo</span>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="indicative">
+            <mat-option value="57">+57</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="telephone">
+        <span>Número de WhatsApp</span>
+        <mat-form-field appearance="outline">
+          <input placeholder="000 000 0000" type="text" matInput formControlName="telephone" id="telephone" readonly/>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <span>Descripción de perfil. Cuéntanos más de ti</span>
+      <mat-form-field appearance="outline">
+        <textarea id="description" matInput formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="content-button">
+    <app-reusable-button
+    [buttonText]="'Guardar'"
+    [isDisabled]="buttonDisabled"
+    [clickOnce]="true"
+    (buttonClick)="handleButtonClick()"
+  ></app-reusable-button>
+  </div>
+</section>

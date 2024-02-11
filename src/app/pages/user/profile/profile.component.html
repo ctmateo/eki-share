@@ -1,0 +1,56 @@
+<div *ngIf="isloading"  [@fadeElement] class="row full-width f-between component container-profile">
+  <div class="bar-left col f-center-h">
+    <div class="configure-profile f-center-h">
+      <div class="col full-width">
+        <ngx-skeleton-loader style="align-self: center;" count="1" appearance="circle"
+          [theme]="{height: '150px', width: '150px'}" />
+        <ngx-skeleton-loader count="2" appearance="circle"
+          [theme]="{height: '20px', width: '100%', 'border-radius': '0',}" />
+      </div>
+      <div class="bottom-line"></div>
+      <ngx-skeleton-loader count="4" appearance="circle"
+        [theme]="{height: '35px', width: '100%', 'border-radius': '0',}" />
+    </div>
+  </div>
+
+  <div class="bar-right">
+    <article class="information-profile px-3 g-4">
+      <br>
+      <ngx-skeleton-loader count="5" appearance="circle"
+        [theme]="{height: '55px', width: '100%', 'border-radius': '0','margin-bottom': '10px'}" />
+      <ngx-skeleton-loader count="2" appearance="circle" class="full-width"
+        [theme]="{height: '55px', width: '48%', 'border-radius': '0','margin-bottom': '10px'}" />
+      <ngx-skeleton-loader count="1" appearance="circle"
+        [theme]="{height: '155px', width: '100%', 'border-radius': '0','margin-bottom': '10px'}" />
+    </article>
+  </div>
+
+</div>
+
+<div *ngIf="!isloading" [@fadeElement] class="full-width col f-between component">
+  <div class="row container-profile full-width f-between">
+    <section class="bar-left">
+      <article class="configure-profile">
+        <section class="center-align">
+          <div [routerLink]="['photo']" class="image-profile">
+            <img [src]="photoUser" alt="profile-user" (error)="noImage($event)">
+          </div>
+          <h1>{{userData.name}} {{userData.lastname}}</h1>
+          <p>{{userData.email}}</p>
+        </section>
+        <div class="bottom-line"></div>
+        <div class="link-items">
+          <a [routerLink]="['profile-config']">Perfil</a>
+          <a [routerLink]="['photo']">Foto</a>
+          <a [routerLink]="['links']">Links</a>
+          <a [routerLink]="['accessibility']">Accesibilidad</a>
+        </div>
+      </article>
+    </section>
+    <section class="bar-right">
+      <article class="information-profile">
+        <router-outlet></router-outlet>
+      </article>
+    </section>
+  </div>
+</div>

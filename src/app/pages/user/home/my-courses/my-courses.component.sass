@@ -1,0 +1,49 @@
+@import "../../../../../styles"
+
+.grid-courses
+    display: flex
+    flex-direction: row
+    justify-content: stretch
+    align-items: flex-start
+    height: auto
+  
+.title
+    font-weight: 700
+    font-size: 18px
+    min-height: 2em
+    line-height: 1.5
+    margin: 0px
+    padding: 0px
+
+.card-course
+    margin: 10px
+    width: 312px
+    height: auto
+    box-sizing: border-box!important
+    &:hover
+        border: 2px solid $main-secundary-color
+    &:active
+        background: $main-primary-light-border
+        color: white
+
+.image-course
+     height: 180px
+     width: calc( 100% + 60px )
+     transform: translateX(-30px)
+     box-sizing: border-box
+     background-attachment: fixed
+     background-position: center
+
+.chip-content
+    height: 50px
+    .chip
+        background: $main-primary-light-color!important
+        background-color: $main-primary-light-color!important
+        color: $text-color!important
+        font-size: 12px
+        padding: 2px
+
+
+::ng-deep .mdc-linear-progress__bar-inner
+    border-color: $main-primary-color!important
+

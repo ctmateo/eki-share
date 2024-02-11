@@ -1,0 +1,37 @@
+<div class="content-view">
+
+  <div class="expand">
+    <mat-accordion>
+      <mat-expansion-panel class="mat-elevation-z0" *ngFor="let info of inforCurso" [expanded]="info.expand">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <p class="panel-title" mat-panel-title>
+              {{ info.head }}
+            </p>
+          </mat-panel-title>
+          <mat-panel-description> </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row info-module space-between" *ngFor="let elemento of info.content"
+          [class.active]="elemento.selected">
+
+          <p class="text-module" #route (click)="goToPath(elemento.typeContent, elemento.id)">
+            {{ elemento.title }}
+          </p>
+          <div class="row align-center just-center">
+            <span *ngIf="elemento.isComplete"><fa-icon [icon]="['fas','circle-check']"></fa-icon></span>
+
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="content-detail">
+    <div class="content-element">
+      <div style="text-align: center" class="title">
+        <h2>{{ title }}</h2>
+      </div>
+      <router-outlet></router-outlet>
+      <div class="space"></div>
+    </div>
+  </div>
+</div>

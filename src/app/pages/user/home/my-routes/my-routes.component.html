@@ -1,0 +1,19 @@
+<div>
+    <div class="row f-between full-width ">
+        <p><span class="title fs-18"> Mis rutas </span></p>
+        <p class="text-highligth"> Ver mis rutas <fa-icon class="icon" [icon]="['fas', 'arrow-right']"></fa-icon> </p>
+    </div>
+
+    <div class="row-wrap full-width auto-height g-1">
+        <owl-carousel-o class="col f-center full-width" [options]="customOptions">
+            <ng-container class="full-width" style="height: 92px!important" *ngFor="let course of courses">
+                <ng-template carouselSlide>
+                    <div class="card-course card-eki mw-250 full-height" [style.border-color]="course.color">
+                        <p class="title fs-18" [style.color]="course.color"> {{course.route}}</p>
+                        <p style="text-align: left;"> {{course.progress}}% completado</p>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </owl-carousel-o>
+    </div>
+</div>
