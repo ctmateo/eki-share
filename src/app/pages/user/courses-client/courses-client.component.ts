@@ -64,6 +64,10 @@ export class CoursesClientComponent implements OnInit {
   }
   async calculateCoursePercent(courseID: string) {
     try {
+      for(let ID of courseID){
+        const responseContentCourseId = await this.api.ListProgressionContentbyCourseId(courseID);
+        console.log('Progression Content for course id', responseContentCourseId);
+      }
       const responseContentCourseId = await this.api.ListProgressionContentbyCourseId(courseID);
       ///console.log('Progression Content for course id', responseContentCourseId);
       const responseContent = await this.api.ListProgressionContents();
@@ -71,8 +75,6 @@ export class CoursesClientComponent implements OnInit {
       const test = await this.api.ListProgresionCourses();
 
       ///console.log('content', responseContent);
-
-
 
       const totalContentsCount = responseContentCourseId.items.length;
 
