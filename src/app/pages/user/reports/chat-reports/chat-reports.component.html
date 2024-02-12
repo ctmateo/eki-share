@@ -31,6 +31,7 @@
       </div>
     </div>
     <div
+      *ngIf="stateWriteBox"
       [ngClass]="{ 'write-box': true, focused: focusOn }"
       [formGroup]="messageForm"
       (keydown.enter)="handleKeyEnter()"

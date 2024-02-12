@@ -36,6 +36,7 @@ export class ChatReportsComponent implements OnInit, OnDestroy, AfterViewInit {
   focusOn: boolean = false;
   activeButtonSend: boolean = false;
   scrollBtn: boolean = false;
+  stateWriteBox: boolean = true;
 
 
   constructor(private userService: UserService, public utils: UtilsService, private api: APIService, private route: ActivatedRoute, private router: Router) {
@@ -63,9 +64,10 @@ export class ChatReportsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   async initializedChatReport() {
     await this.getDataReport();
-    this.getUserStatusMessage();
     await this.getMessages();
+    await this.disableChatBox();
     this.scrollAutomatic();
+    this.getUserStatusMessage();
     this.handleFormControl();
     this.activeScrollBtn();
   }
@@ -74,6 +76,7 @@ export class ChatReportsComponent implements OnInit, OnDestroy, AfterViewInit {
     try {
       const response = await this.userService.getUser();
       this.userStatusMessage = response["userID"];
+      
       this.userType = response["typeUser"];
     } catch (error) {
       console.error('Error al obtener el estado del usuario', error);
@@ -182,6 +185,14 @@ export class ChatReportsComponent implements OnInit, OnDestroy, AfterViewInit {
         this.scrollBtn = false;
       }
     });
+  }
+
+  async disableChatBox(){
+    const response = await this.api.GetRequestSupport(this.idReport)
+    if(response.stateRequest === 'SOLVED'){
+      this.stateWriteBox = false;
+    }
+    console.log('request', response)
   }
 
 }

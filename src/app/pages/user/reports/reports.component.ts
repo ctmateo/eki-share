@@ -18,7 +18,6 @@ export class ReportsComponent implements OnInit {
   filterOptions: any = ['Formulario', 'Contenido', 'Pagos', 'Multimedia'];
   dataSourceById: any = [];
   tabselected: number = 0;
-  stateBtnOpenChat: boolean = true;
 
   constructor(
     private router: Router,
@@ -77,12 +76,10 @@ export class ReportsComponent implements OnInit {
       const response = await this.api.RequestSupportbyUserID(this.userData["userID"]);
 
       if (this.tabselected === 0) {
-        this.stateBtnOpenChat = true;
         const filteredItemsStateRequest = response.items.filter(item => item && (item.stateRequest !== 'SOLVED' && item.stateRequest !== 'UNSOLVED'));
         this.dataSourceById = filteredItemsStateRequest;
       }
       if (this.tabselected === 1) {
-        this.stateBtnOpenChat = false;
         const filteredItemsStateRequest = response.items.filter(item => item && (item.stateRequest === 'SOLVED' || item.stateRequest === 'UNSOLVED'));
         this.dataSourceById = filteredItemsStateRequest;
       }

@@ -11,7 +11,7 @@ const DEFAULT_PROFILE_IMAGE = "https://eki-public.s3.amazonaws.com/no_data.jpg"
         {{ course.name.length > MAX_LENGHT ? course.name.substring(0, MAX_LENGHT) + '...' : course.name }}
       </div>
       <div class="image-course">
-      <img  [src]="course.imageCourse" loading="lazy" alt="Course" (error)="noImage($event)">
+      <img [src]="course.imageCourse" loading="lazy" alt="Course" (error)="noImage($event)">
       </div>
       <br />
       <mat-progress-bar mode="determinate" [value]="course.percent"></mat-progress-bar>

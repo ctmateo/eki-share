@@ -39,13 +39,22 @@ export class CoursesClientComponent implements OnInit {
   async getCoursesByUserId() {
     try {
       const responseCourses = await this.api.ListProgresionCourseByUserDataID(this.userService.dataSource['userDataID']);
+      // console.log('courses', responseCourses);
       const coursePromises = responseCourses.items.map(async (item) => {
+
+
         const { name, descriptionCourse, tags, keyImagePresentation, id, modules } = item?.course!;
+
         const lengthClasses = modules?.items.length;
+
         const urlPromise = this.s3Service.getUrlFile(keyImagePresentation);
-        const percentPromise = this.calculateCoursePercent(id);
+
+        const percentPromise = this.calculateCoursePercent(id, item?.course?.countContentByCourse);
+
         const tagsListPromise = this.translateTagsbyId(tags?.items.map(item => item?.courseByTagsTagId));
+
         const [url, percent, tagsList] = await Promise.all([urlPromise, percentPromise, tagsListPromise]);
+
         return {
           percent: percent,
           chips: tagsList,
@@ -62,30 +71,14 @@ export class CoursesClientComponent implements OnInit {
       console.error('No es posible traer la información');
     }
   }
-  async calculateCoursePercent(courseID: string) {
+  async calculateCoursePercent(courseID, totalCourses) {
     try {
-      for(let ID of courseID){
-        const responseContentCourseId = await this.api.ListProgressionContentbyCourseId(courseID);
-        console.log('Progression Content for course id', responseContentCourseId);
-      }
       const responseContentCourseId = await this.api.ListProgressionContentbyCourseId(courseID);
-      ///console.log('Progression Content for course id', responseContentCourseId);
-      const responseContent = await this.api.ListProgressionContents();
+      console.log('response', responseContentCourseId)
+      const totalContentsCount = totalCourses;
+      const completedContentsCount = responseContentCourseId.items.length;
 
-      const test = await this.api.ListProgresionCourses();
-
-      ///console.log('content', responseContent);
-
-      const totalContentsCount = responseContentCourseId.items.length;
-
-      let completedContentsCount = 0;
-      for (const item of responseContentCourseId.items) {
-        if (item?.contentIscompleted) {
-          completedContentsCount++;
-        }
-      }
-
-      const progressPercent = totalContentsCount > 0 ? (completedContentsCount / totalContentsCount) * 100 : 0;
+      const progressPercent = totalContentsCount > 0 ? (completedContentsCount / totalCourses) * 100 : 0;
 
       return progressPercent;
     } catch (e) {

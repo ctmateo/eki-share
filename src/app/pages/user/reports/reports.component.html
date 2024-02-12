@@ -29,14 +29,12 @@
           <p>{{ item.requestMessages }}</p>
         </div>
       </div>
-      <div *ngIf="stateBtnOpenChat">
-        <app-reusable-button
-          [buttonText]="'Abrir chat'"
-          [isDisabled]="buttonDisabled"
-          [clickOnce]="true"
-          (buttonClick)="handleButtonClick(item.id)"
-        ></app-reusable-button>
-      </div>
+      <app-reusable-button
+        [buttonText]="'Abrir chat'"
+        [isDisabled]="buttonDisabled"
+        [clickOnce]="true"
+        (buttonClick)="handleButtonClick(item.id)"
+      ></app-reusable-button>
     </div>
   </div>
 </div>
